@@ -1,4 +1,4 @@
-package com.embarquedev.sistema_pedidos;
+package sistema_pedidos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
