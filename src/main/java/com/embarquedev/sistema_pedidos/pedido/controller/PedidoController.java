@@ -1,7 +1,9 @@
 package com.embarquedev.sistema_pedidos.pedido.controller;
 
+import com.embarquedev.sistema_pedidos.pedido.dto.AtualizaStatusResquest;
 import com.embarquedev.sistema_pedidos.pedido.dto.CriarPedidoRequest;
 import com.embarquedev.sistema_pedidos.pedido.entity.Pedido;
+import com.embarquedev.sistema_pedidos.pedido.entity.StatusPedido;
 import com.embarquedev.sistema_pedidos.pedido.service.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<Pedido> criar(
             @RequestBody @Valid CriarPedidoRequest request
-            ) {
+    ) {
 
         Pedido pedidoCriado = pedidoService.criar(request);
 
@@ -40,5 +42,16 @@ public class PedidoController {
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(pedidoService.buscarPorId(id));
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Pedido> atualizarStatus(
+            @PathVariable Long id,
+            @RequestBody @Valid AtualizaStatusResquest request
+
+    ) {
+
+        return ResponseEntity.ok(
+                pedidoService.atualizarStatus(id, request));
     }
 }
