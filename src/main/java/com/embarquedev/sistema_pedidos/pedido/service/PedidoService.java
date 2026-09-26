@@ -1,5 +1,6 @@
 package com.embarquedev.sistema_pedidos.pedido.service;
 
+import com.embarquedev.sistema_pedidos.pedido.dto.AtualizaStatusResquest;
 import com.embarquedev.sistema_pedidos.pedido.dto.CriarPedidoRequest;
 import com.embarquedev.sistema_pedidos.pedido.dto.ItemPedidoRequest;
 import com.embarquedev.sistema_pedidos.pedido.entity.ItemPedido;
@@ -48,6 +49,14 @@ public class PedidoService {
     public Pedido buscarPorId(Long id) {
         return pedidoRepository.findById(id)
                 .orElseThrow(()-> new PedidoNaoEncontradoException(id));
+    }
+
+    public Pedido atualizarStatus(Long id, AtualizaStatusResquest resquest) {
+        Pedido pedido = buscarPorId(id);
+
+        pedido.setStatus(resquest.status());
+
+        return pedidoRepository.save(pedido);
     }
 
     private ItemPedido converterItem(ItemPedidoRequest itemRequest) {
