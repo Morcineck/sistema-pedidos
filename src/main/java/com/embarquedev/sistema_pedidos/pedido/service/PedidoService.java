@@ -5,6 +5,7 @@ import com.embarquedev.sistema_pedidos.pedido.dto.ItemPedidoRequest;
 import com.embarquedev.sistema_pedidos.pedido.entity.ItemPedido;
 import com.embarquedev.sistema_pedidos.pedido.entity.Pedido;
 import com.embarquedev.sistema_pedidos.pedido.entity.StatusPedido;
+import com.embarquedev.sistema_pedidos.pedido.exception.PedidoNaoEncontradoException;
 import com.embarquedev.sistema_pedidos.pedido.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,15 @@ public class PedidoService {
 
     }
 
+    public List<Pedido> listarTodos() {
+        return pedidoRepository.findAll();
+    }
+
+    public Pedido buscarPorId(Long id) {
+        return pedidoRepository.findById(id)
+                .orElseThrow(()-> new PedidoNaoEncontradoException(id));
+    }
+
     private ItemPedido converterItem(ItemPedidoRequest itemRequest) {
         return ItemPedido.builder()
                 .nome(itemRequest.nome())
@@ -56,6 +66,5 @@ public class PedidoService {
                 )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
 
 }
