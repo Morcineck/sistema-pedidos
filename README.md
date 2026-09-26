@@ -137,7 +137,9 @@ Dessa forma, campos que fazem parte das regras de negócio permanecem sob contro
 
 ## Arquitetura
 
-O desenho da arquitetura do sistema está disponível junto à entrega do projeto.
+O fluxo simplificado da aplicação está representado abaixo:
+
+![Arquitetura do Sistema de Pedidos](docs/arquitetura.png)
 
 ## Escalabilidade
 
