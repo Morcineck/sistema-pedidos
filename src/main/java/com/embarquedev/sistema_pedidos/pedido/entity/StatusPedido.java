@@ -1,4 +1,4 @@
-package sistema_pedidos.pedido.entity;
+package com.embarquedev.sistema_pedidos.pedido.entity;
 
 public enum StatusPedido {
 
